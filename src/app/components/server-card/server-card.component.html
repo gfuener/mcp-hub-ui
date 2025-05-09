@@ -70,7 +70,7 @@
     
     <div class="server-capabilities">
       <div class="capabilities-list">
-        <span *ngFor="let capability of server.capabilities" class="capability-badge">
+        <span *ngFor="let capability of server.capabilities" class="capability-badge" (click)="openModal(capability)">
           {{ capability }}
         </span>
       </div>
@@ -81,3 +81,11 @@
     </div>
   </div>
 </div>
+
+<app-server-modal
+  *ngIf="showModal && selectedCapability"
+  [server]="server"
+  [capability]="selectedCapability"
+  [show]="showModal"
+  (close)="closeModal()"
+></app-server-modal>
